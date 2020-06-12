@@ -22,6 +22,11 @@ class DomElement {
     return this;
   }
 
+  withOnClick(method) {
+    this.element.onclick = method;
+    return this;
+  }
+
   build() {
     return this.element;
   }
@@ -31,10 +36,9 @@ class DomElement {
 createInputs();
 
 
-const button = elementById("CalculateButton");
-button.onclick = calcIntrest;
-const resultContainter = elementById("Result");
+elementById("CalculateButton").onclick = calcIntrest;
 
+const resultContainter = elementById("Result");
 
 async function calcIntrest() {
   console.log("Calculate intrest..");
@@ -47,30 +51,24 @@ async function calcIntrest() {
   let newSum = sum;
   clearChildren(resultContainter);
 
-  let element = newElement('p');
-  resultContainter.appendChild(element)
-  element.innerHTML = `${0}: ${newSum}`;;
+
+  resultContainter.appendChild(
+    new DomElement("p").withInnerHtml(`${0}: ${newSum}`).build()
+  );
+
 
   for (let i = 1; i < Number(years) + 1; i++) {
-    element = newElement('p');
-    resultContainter.appendChild(element)
 
     newSum = Number(newSum) + Number(appendingValue);
     newSum = newSum * ((rate / 100) + 1);
-    element.innerHTML = `${i}: ${newSum}`;;
+
+    resultContainter.appendChild(
+      new DomElement("p").withInnerHtml(`${i}: ${newSum}`).build()
+    )
   }
 
 }
 
-/*
-async function promptValue(question) {
-  return new Promise(resolve => {
-    prompter.question(question, answer => {
-      resolve(answer)
-    });
-  })
-}
-*/
 
 function createInputs() {
 
@@ -92,7 +90,6 @@ function createInputs() {
     const inputElement = newElement("input");
     inputElement.id = input + "Input";
 
-    console.log(inputText);
     inputContainter.appendChild(inputText);
     inputContainter.appendChild(inputElement);
 
