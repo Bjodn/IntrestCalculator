@@ -1,0 +1,23 @@
+{
+  "name": "intrestcalculator",
+  "version": "0.0.1",
+  "description": "Intrest calculator and stuff",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run": "nodemon ./serve.js localhost 8000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bjodn/IntrestCalculator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bjodn/IntrestCalculator/issues"
+  },
+  "homepage": "https://github.com/Bjodn/IntrestCalculator#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

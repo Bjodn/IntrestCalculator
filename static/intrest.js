@@ -1,46 +1,20 @@
-
-
+import {DomElement} from "./DomBuilder.js";
 
 let rate = 0;
 let sum = 0;
 let years = 0;
 let appendingValue = 0;
 
-class DomElement {
 
-  constructor (domType) {
-    this.element = document.createElement(domType);
-  }
-
-  withId(id) {
-    this.element.id = id;
-    return this;
-  }
-
-  withInnerHtml(html) {
-    this.element.innerHTML = html;
-    return this;
-  }
-
-  withOnClick(method) {
-    this.element.onclick = method;
-    return this;
-  }
-
-  build() {
-    return this.element;
-  }
-
-}
 
 createInputs();
 
 
-elementById("CalculateButton").onclick = calcIntrest;
+elementById("CalculateButton").onclick = calculateIntrest;
 
 const resultContainter = elementById("Result");
 
-async function calcIntrest() {
+async function calculateIntrest() {
   console.log("Calculate intrest..");
 
   rate = elementById("RateInput").value;
@@ -68,7 +42,6 @@ async function calcIntrest() {
   }
 
 }
-
 
 function createInputs() {
 
