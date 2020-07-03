@@ -1,16 +1,31 @@
+
+
 export function calculateInterest(input) {
-    let rate = input["Rate"];
-    let sum = input["Sum"];
-    let years = input["Years"];
-    let appendingValue = input["Appending value"];
+    const rate = input["Rate"];
+    const originalSum = input["Sum"];
+    const years = input["Years"];
+    const appendingValue = input["Appending value"];
+    let sum = originalSum;
 
+    const result = [];
 
-    const yearlySum = [sum];
-    for (let i = 1; i < Number(years) + 1; i++) {
-        sum = Number(sum) + Number(appendingValue);
-        sum = sum * ((rate / 100) + 1);
-        yearlySum.push(sum);
+    for (let i = 0; i < Number(years); i++) {
+        sum = addAppendingValue(sum, appendingValue);
+        sum = addInterest(sum, rate);
+        result.push({
+            sum: sum,
+            totalAppended: appendingValue * i,
+            profit: sum - originalSum - (appendingValue * i)
+        });
     }
 
-    return yearlySum;
+    return result;
+}
+
+function addAppendingValue(sum, appendingValue) {
+    return Number(sum) + Number(appendingValue);
+}
+
+function addInterest(sum, rate) {
+    return sum * ((rate / 100) + 1);
 }

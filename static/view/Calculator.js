@@ -1,29 +1,27 @@
 import {DomElement, elementById, clearChildren} from "./DomUtilities.js";
+import {CalculatorOutput} from "./CalculatorOutput.js";
 
 export class Calculator {
+
     constructor(inputTypes, calculation) {
         this.inputTypes = inputTypes;
         this.calculation = calculation;
+
+        this.inputDiv = new DomElement("div")
+                            .withId("CalculatorInput")
+                            .withChildren(this.inputTypes.map(Calculator.createInputField))
+                            .withChild(this.createButton())
+                            .withStyle({"flex": "0 0 30%"})
+                            .build();
+
+        this.outputDiv = new CalculatorOutput();
     }
 
     renderCalculator() {
-
-        const calculatorInputDiv = new DomElement("div")
-            .withId("CalculatorInput")
-            .withChildren(this.inputTypes.map(Calculator.createInputField))
-            .withChild(this.createButton())
-            .withStyle({"flex": "0 0 30%"})
-            .build();
-
-        const calculatorOutputDiv = new DomElement("div")
-            .withId("CalculatorOutput")
-            .withStyle({"flex": "1"})
-            .build();
-
         return new DomElement("div")
-            .withChildren([calculatorInputDiv, calculatorOutputDiv])
-            .withStyle({"display": "flex", "margin-top": "1em"})
-            .build();
+                .withChildren([this.inputDiv, this.outputDiv.domElement])
+                .withStyle({"display": "flex", "margin-top": "1em"})
+                .build();
     }
 
     static createInputField(input) {
@@ -47,27 +45,17 @@ export class Calculator {
             .withType("button")
             .withName("button")
             .withInnerHtml("Calculate rate")
-            .withOnClick(() => this.initiateCalculation())
+            .withOnClick(() => this.initiateCalculationAndPrintResult())
             .withStyle({"margin-top": "1em", "padding": "0.5em"})
             .build()
     }
 
-    initiateCalculation() {
-
+    initiateCalculationAndPrintResult() {
         const input = this.createCalculatorInput();
         const result = this.calculation(input);
 
-        const outputDiv = elementById("CalculatorOutput");
-        clearChildren(outputDiv);
-
-        let iteration = 1;
-
-        result.forEach(sum => {
-            outputDiv.appendChild(
-                new DomElement("p").withInnerHtml(`${iteration}: ${sum}`).build()
-            );
-            iteration++;
-        })
+        clearChildren(this.outputDiv.domElement);
+        this.outputDiv.renderOutput(result);
     }
 
     createCalculatorInput() {
