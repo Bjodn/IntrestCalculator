@@ -1,7 +1,7 @@
 import {DomElement, elementById} from "./view/DomUtilities.js";
-import {renderInterestCalculator} from "./view/InterestCalulator.js";
-import {renderDownpaymentCalculator} from "./view/DownpaymentCalculator.js";
+import {Calculator} from "./view/Calculator.js";
 import {renderCalculatorSwitch} from "./view/CalculatorSwitch.js";
+import {calculateInterest} from "./services/Calculations.js";
 
 
 
@@ -21,11 +21,11 @@ function assembleCalculators() {
     return [
         {
             name: "Interest",
-            renderMethod: renderInterestCalculator
+            class: new Calculator(["Rate", "Sum", "Years", "Appending value"], calculateInterest)
         },
         {
             name: "Down payment",
-            renderMethod: renderDownpaymentCalculator
+            class: new Calculator(["Rate", "Sum", "Years"], calculateInterest)
         }
     ];
 }

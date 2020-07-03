@@ -13,13 +13,13 @@ export function renderCalculatorSwitch(calculators) {
 
 function createCalculatorOption(calculator) {
     return new DomElement("Button")
-        .withOnClick(() => renderCalculator(calculator.renderMethod))
+        .withOnClick(() => renderCalculator(calculator.class))
         .withInnerHtml(calculator.name)
         .build()
 }
 
-function renderCalculator(renderMethod) {
+function renderCalculator(calculator) {
     const calculatorContainer = elementById("CalculatorContainer");
     clearChildren(calculatorContainer);
-    calculatorContainer.appendChild(renderMethod())
+    calculatorContainer.appendChild(calculator.renderCalculator())
 }

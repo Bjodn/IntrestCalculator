@@ -1,6 +1,4 @@
-export async function calculateInterest(input) {
-    console.log("Calculate intrest..");
-
+export function calculateInterest(input) {
     let rate = input["Rate"];
     let sum = input["Sum"];
     let years = input["Years"];
