@@ -1,41 +1,37 @@
 import {calculateInterest} from "../services/calculator.js";
 import {DomElement, elementById, clearChildren} from "./DomUtilities.js";
 
+const inputTypes = ["Rate", "Sum", "Years", "Appending value"];
+
 export function renderInterestCalculator() {
-    const inputDiv = new DomElement("div")
-                        .withChildren(createInputFields(["Rate", "Sum", "Years", "Appending value"]))
-                        .build();
 
-    const button = new DomElement("button")
-                        .withId("CalculateButton")
-                        .withType("button")
-                        .withName("button")
-                        .withInnerHtml("Calculate rate")
-                        .withOnClick(initiateInterestCalculation)
-                        .build();
+    const calculatorInputDiv = new DomElement("div")
+                                .withId("CalculatorInput")
+                                .withChildren(inputTypes.map(createInputField))
+                                .withChild(createButton())
+                                .withStyle({"flex": "0 0 30%"})
+                                .build();
 
+    const calculatorOutputDiv = new DomElement("div")
+        .withId("CalculatorOutput")
+        .withStyle({"flex": "1"})
+        .build();
 
-    const calculatorInputDiv = new DomElement("div").withId("CalculatorInput").build();
-    calculatorInputDiv.appendChild(inputDiv);
-    calculatorInputDiv.appendChild(button);
-
-    const calculatorOutputDiv = new DomElement("div").withId("CalculatorOutput").build();
-
-    return new DomElement("div").withChildren([calculatorInputDiv, calculatorOutputDiv]).build();
-}
-
-function createInputFields(inputs) {
-    return inputs.map(createInputField)
+    return new DomElement("div")
+                .withChildren([calculatorInputDiv, calculatorOutputDiv])
+                .withStyle({"display": "flex", "margin-top": "1em"})
+                .build();
 }
 
 function createInputField(input) {
 
-    const inputText = new DomElement("p")
+    const inputText = new DomElement("div")
                         .withInnerHtml(input + ": ")
+                        .withStyle({"margin-top": "1em"})
                         .build();
 
     const inputElement = new DomElement("input")
-                            .withId(input + "Id")
+                            .withId(input)
                             .build();
 
     return new DomElement("div")
@@ -43,20 +39,38 @@ function createInputField(input) {
                 .build();
 }
 
+function createButton() {
+    return new DomElement("button")
+        .withId("CalculateButton")
+        .withType("button")
+        .withName("button")
+        .withInnerHtml("Calculate rate")
+        .withOnClick(initiateInterestCalculation)
+        .withStyle({"margin-top": "1em", "padding": "0.5em"})
+        .build()
+}
+
 async function initiateInterestCalculation() {
 
-    const result = await calculateInterest();
+    const input = createCalculatorInput();
+    console.log(input);
+    const result = await calculateInterest(input);
 
-    const resultContainter = elementById("CalculatorOutput");
-    clearChildren(resultContainter);
+    const outputDiv = elementById("CalculatorOutput");
+    clearChildren(outputDiv);
 
     let iteration = 1;
 
     result.forEach(sum => {
-        resultContainter.appendChild(
+        outputDiv.appendChild(
             new DomElement("p").withInnerHtml(`${iteration}: ${sum}`).build()
         );
         iteration++;
     })
+}
 
+function createCalculatorInput() {
+    const input = {};
+    inputTypes.forEach(inputType => Object.assign(input, {[inputType]: elementById(inputType).value}));
+    return input;
 }

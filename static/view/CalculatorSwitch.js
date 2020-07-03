@@ -7,6 +7,7 @@ export function renderCalculatorSwitch(calculators) {
     return new DomElement("div")
         .withId("calculatorSwitch")
         .withChildren(calculatorElements)
+        .withStyle({"margin": "0 auto", "width": "50%"})
         .build();
 }
 

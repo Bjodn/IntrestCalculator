@@ -40,6 +40,13 @@ export class DomElement {
         return this;
     }
 
+    withStyle(styleSettings) {
+        for (const [style, value] of Object.entries(styleSettings)) {
+            this.element.style[style] = value;
+        }
+        return this;
+    }
+
     build() {
         return this.element;
     }

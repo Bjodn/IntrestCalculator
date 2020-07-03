@@ -1,30 +1,17 @@
-import {elementById} from "../view/DomUtilities.js";
-
-let rate = 0;
-let sum = 0;
-let years = 0;
-let appendingValue = 0;
-
-export async function calculateInterest() {
+export async function calculateInterest(input) {
     console.log("Calculate intrest..");
 
-    rate = elementById("RateId").value;
-    sum = elementById("SumId").value;
-    years = elementById("YearsId").value;
-    appendingValue = elementById("Appending valueId").value;
-
-    let newSum = sum;
-
-    const yearlySum = [newSum];
+    let rate = input["Rate"];
+    let sum = input["Sum"];
+    let years = input["Years"];
+    let appendingValue = input["Appending value"];
 
 
+    const yearlySum = [sum];
     for (let i = 1; i < Number(years) + 1; i++) {
-
-        newSum = Number(newSum) + Number(appendingValue);
-        newSum = newSum * ((rate / 100) + 1);
-
-        yearlySum.push(newSum);
-
+        sum = Number(sum) + Number(appendingValue);
+        sum = sum * ((rate / 100) + 1);
+        yearlySum.push(sum);
     }
 
     return yearlySum;
