@@ -1,6 +1,10 @@
 
+export const interestCalculation = {
+    inputTypes: ["Rate", "Sum", "Years", "Appending value"],
+    calculationMethod: calculateInterest
+};
 
-export function calculateInterest(input) {
+function calculateInterest(input) {
     const rate = input["Rate"];
     const originalSum = input["Sum"];
     const years = input["Years"];
@@ -13,9 +17,9 @@ export function calculateInterest(input) {
         sum = addAppendingValue(sum, appendingValue);
         sum = addInterest(sum, rate);
         result.push({
-            sum: sum,
-            totalAppended: appendingValue * i,
-            profit: sum - originalSum - (appendingValue * i)
+            "Sum": sum,
+            "Appended": appendingValue * i,
+            "Profit": sum - originalSum - (appendingValue * i)
         });
     }
 
