@@ -1,35 +1,54 @@
+class Calculation {
+    constructor(inputTypes, calculation) {
+        this.inputTypes = inputTypes;
+        this.calculationMethod = calculation;
+    }
+}
 
-export const interestCalculation = {
-    inputTypes: ["Rate", "Sum", "Years", "Appending value"],
-    calculationMethod: calculateInterest
-};
+export const interestCalculation = new Calculation(
+    ["Rate", "Sum", "Years", "Appending value"],
+    calculateInterest
+);
 
 function calculateInterest(input) {
-    const rate = input["Rate"];
-    const originalSum = input["Sum"];
-    const years = input["Years"];
-    const appendingValue = input["Appending value"];
+    const rate = Number(input["Rate"]);
+    const originalSum = Number(input["Sum"]);
+    const years = Number(input["Years"]);
+    const appendingValue = Number(input["Appending value"]);
+
     let sum = originalSum;
+    let appended = 0;
 
-    const result = [];
+    const everyCalculatedInterest = [];
 
-    for (let i = 0; i < Number(years); i++) {
+    for (let i = 0; i < years; i++) {
         sum = addAppendingValue(sum, appendingValue);
         sum = addInterest(sum, rate);
-        result.push({
-            "Sum": sum,
-            "Appended": appendingValue * i,
-            "Profit": sum - originalSum - (appendingValue * i)
-        });
+        appended += appendingValue;
+        const profit = calculateProfit(sum, originalSum, appended);
+        everyCalculatedInterest.push(new CalculatedInterest(sum, appended, profit));
     }
 
-    return result;
+    return everyCalculatedInterest;
 }
 
 function addAppendingValue(sum, appendingValue) {
-    return Number(sum) + Number(appendingValue);
+    return sum + appendingValue;
 }
 
 function addInterest(sum, rate) {
     return sum * ((rate / 100) + 1);
 }
+
+function calculateProfit(sum, originalSum, appended) {
+    return sum - originalSum - appended;
+}
+
+class CalculatedInterest {
+    constructor(sum, appended, profit) {
+        this["Sum"] = sum;
+        this["Appended"] = appended;
+        this["Profit"] = profit;
+    }
+}
+
