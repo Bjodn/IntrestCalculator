@@ -25,8 +25,15 @@ export class DomElement {
         return this;
     }
 
-    withOnClick(method) {
-        this.element.onclick = method;
+    withOnClick(method, elementReaction) {
+        if (elementReaction != null) {
+            this.element.onclick = () => {
+                method();
+                elementReaction(this.element);
+            }
+        } else {
+            this.element.onclick = method;
+        }
         return this;
     }
 
@@ -72,3 +79,12 @@ export function elementsByClass(className) {
     return document.getElementsByClassName(className);
 }
 
+export function mergeStyles(target, additionalStyle) {
+    return Object.assign(target, additionalStyle)
+}
+
+export function adjustStylingOfElement(target, styleSettings) {
+    for (const [style, value] of Object.entries(styleSettings)) {
+        target.style[style] = value;
+    }
+}

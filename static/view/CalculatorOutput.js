@@ -1,4 +1,4 @@
-import {DomElement} from "./DomUtilities.js";
+import {DomElement, mergeStyles} from "./DomUtilities.js";
 import {
     cellStyle,
     profitCellStyle,
@@ -56,20 +56,16 @@ function createTableCells(yearlyOutput) {
 
 function adjustHeaderStyleToCellType(cellType) {
     let style = adjustStyleToCellType(cellType);
-    style = addStyling(style, headerCellStyle);
+    style = mergeStyles(style, headerCellStyle);
     return style;
 }
 
 function adjustStyleToCellType(outputType) {
     let style = {...cellStyle};
     if (outputType === "Profit") {
-        style = addStyling(style, profitCellStyle);
+        style = mergeStyles(style, profitCellStyle);
     } else if (outputType === "Appended") {
-        style = addStyling(style, appendedCellStyle);
+        style = mergeStyles(style, appendedCellStyle);
     }
     return style;
-}
-
-function addStyling(target, additionalStyle) {
-    return Object.assign(target, additionalStyle)
 }

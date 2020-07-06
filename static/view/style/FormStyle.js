@@ -25,3 +25,10 @@ export const inputStyle = {
     "border-bottom-color": lightBlue
 };
 
+export const formButtonStyle = {
+    background: "none",
+    border: "none",
+    "margin-top": "1em", "padding": "0.5em",
+    color: backgroundColor,
+    "background-color": limeGreen
+};
