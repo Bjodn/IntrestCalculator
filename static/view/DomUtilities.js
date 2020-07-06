@@ -47,6 +47,11 @@ export class DomElement {
         return this;
     }
 
+    withValue(value) {
+        this.element.value = value;
+        return this;
+    }
+
     build() {
         return this.element;
     }

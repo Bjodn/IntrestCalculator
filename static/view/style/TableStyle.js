@@ -1,13 +1,17 @@
-const limeGreen = "rgb(50,205,50)";
-const lightBlue = "#5392ff";
+import {colorPalette} from "./ColorPalette.js";
+
+const lightBlue = colorPalette.lightBlue;
+const limeGreen = colorPalette.limeGreen;
+const lightGray = colorPalette.lightGray;
+const backgroundColor = colorPalette.backgroundColor;
 
 export const cellStyle = {
     padding: "1em",
     "border-bottom-style": "solid",
     "border-width": "0.05em",
     "border-color": lightBlue,
-    color: "rgb(225, 225, 225)",
-    "background-color": "rgb(29, 52, 88)",
+    color: lightGray,
+    "background-color": backgroundColor,
     margin: "0px"
 };
 
