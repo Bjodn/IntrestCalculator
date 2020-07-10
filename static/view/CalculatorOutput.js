@@ -9,9 +9,7 @@ import {
 export class CalculatorOutput {
 
     constructor() {
-        this.domElement = new DomElement("div")
-                        .withStyle({"flex": "1"})
-                        .build()
+        this.domElement = new DomElement("div").build()
     }
 
     renderOutput(output) {
@@ -19,7 +17,10 @@ export class CalculatorOutput {
         rows.push(createTableHeader(Object.keys(output[0])));
         rows.push(...createTableRows(output));
 
-        const table = new DomElement("table").withChildren(rows).build();
+        const table = new DomElement("table")
+            .withChildren(rows)
+            .withStyle({"margin-top": "2.5em"})
+            .build();
         table.cellSpacing = 0;
         this.domElement.appendChild(table);
     }

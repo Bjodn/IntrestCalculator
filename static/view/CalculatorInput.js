@@ -4,13 +4,28 @@ import {formStyle, inputStyle} from "./style/FormStyle.js";
 export class CalculatorInput {
 
     constructor(inputTypes, button) {
-        this.domElement = new DomElement("div")
-                            .withId("CalculatorInput")
+        this.formElement = new DomElement("div")
                             .withChildren(inputTypes.map(createInputField))
-                            .withChild(button)
+                            .withChild(buttonWrapper(button))
                             .withStyle(formStyle)
                             .build();
+
+        this.toggleElement = new DomElement("div")
+            .withStyle({flex: "0 0 5%", padding: "1em"})
+            .build();
+
+        this.domElement = new DomElement("div")
+            .withId("CalculatorInput")
+            .withChildren([
+                //this.toggleElement,
+                this.formElement])
+            .withStyle({display: "flex"})
+            .build()
     }
+}
+
+function buttonWrapper(button) {
+    return new DomElement("div").withStyle({width: "100%"}).withChild(button).build();
 }
 
 function createInputField(input) {
@@ -26,6 +41,7 @@ function createInputField(input) {
 
     return new DomElement("div")
         .withChildren([inputText, inputElement])
+        .withStyle({width: "25%"})
         .build();
 }
 

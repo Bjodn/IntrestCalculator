@@ -7,6 +7,7 @@ const backgroundColor = colorPalette.backgroundColor;
 
 export const cellStyle = {
     padding: "1em",
+    width: "10em",
     "border-bottom-style": "solid",
     "border-width": "0.05em",
     "border-color": lightBlue,

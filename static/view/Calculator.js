@@ -14,7 +14,7 @@ export class Calculator {
     renderCalculator() {
         return new DomElement("div")
                 .withChildren([this.input.domElement, this.output.domElement])
-                .withStyle({"display": "flex", "margin-top": "1em"})
+                .withStyle({"margin-top": "1em"})
                 .build();
     }
 

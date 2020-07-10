@@ -11,7 +11,7 @@ export class CalculatorSwitch {
         this.domElement = new DomElement("div")
             .withId("calculatorSwitch")
             .withChildren(this.options)
-            .withStyle({"margin": "0 auto", "width": "50%"})
+            .withStyle({"margin": "0 auto", "width": "50%", "padding-bottom": "2.5em"})
             .build();
     }
 

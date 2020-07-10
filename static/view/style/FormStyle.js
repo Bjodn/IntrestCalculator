@@ -6,8 +6,9 @@ const lightGray = colorPalette.lightGray;
 const backgroundColor = colorPalette.backgroundColor;
 
 export const formStyle = {
-    flex: "0 0 30%",
-    margin: "0 auto",
+    flex: "1",
+    display: "flex",
+    "flex-wrap": "wrap",
     padding: "1em",
     width: "50%",
     color: lightGray,
@@ -17,6 +18,7 @@ export const formStyle = {
 export const inputStyle = {
     "margin-top": "0.2em",
     "margin-bottom": "0.3em",
+    width: "80%",
     height: "2em",
     "background-color": backgroundColor,
     color: lightGray,
@@ -28,7 +30,8 @@ export const inputStyle = {
 export const formButtonStyle = {
     background: "none",
     border: "none",
-    "margin-top": "1em", "padding": "0.5em",
+    "margin-top": "2em", "padding": "0.5em",
     color: backgroundColor,
-    "background-color": limeGreen
+    "background-color": limeGreen,
+    width: "25%"
 };
