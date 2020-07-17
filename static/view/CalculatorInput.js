@@ -41,7 +41,7 @@ function createInputField(input) {
 
     return new DomElement("div")
         .withChildren([inputText, inputElement])
-        .withStyle({width: "25%"})
+//        .withStyle({width: "100%"}) TODO ??
         .build();
 }
 

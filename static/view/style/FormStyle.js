@@ -30,8 +30,10 @@ export const inputStyle = {
 export const formButtonStyle = {
     background: "none",
     border: "none",
-    "margin-top": "2em", "padding": "0.5em",
+    "margin-top": "2em",
+    padding: "0.5em",
     color: backgroundColor,
     "background-color": limeGreen,
-    width: "25%"
+    width: "25%",
+    "min-width": "5em"
 };

@@ -54,6 +54,21 @@ export class DomElement {
         return this;
     }
 
+    /*
+    *  Receives style setting as a function instead of object that return style object conditioned on window size.
+    * TODO
+    */
+    withResponsiveStyle(styleSettings) {
+        window.onresize = () => {
+            const styles = styleSettings();
+            for (const [style, value] of Object.entries(styles)) {
+                this.element.style[style] = value;
+            }
+        };
+        window.onresize = () => console.log("fail...");
+        return this;
+    }
+
     withValue(value) {
         this.element.value = value;
         return this;

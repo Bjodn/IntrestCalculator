@@ -23,6 +23,19 @@ app.appendChild(calculatorSwitch.domElement);
 
 const calculatorContainer = new DomElement("div")
                                 .withId("CalculatorContainer")
-                                .withStyle({margin: "0 auto", width: "50%"})
+                                .withResponsiveStyle(setCalculatorStyle)
                                 .build();
 app.appendChild(calculatorContainer);
+
+
+function setCalculatorStyle() {
+    const style = {
+        margin: "0 auto",
+        width: "50%"
+    };
+    if (window.matchMedia("(max-width: 700px)").matches) {
+        style.width = "100%";
+        console.log("min 700");
+    }
+    return style;
+}
