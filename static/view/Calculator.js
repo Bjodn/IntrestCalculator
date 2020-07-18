@@ -9,13 +9,11 @@ export class Calculator {
         this.calculation = calculation;
         this.input = new CalculatorInput(calculation.inputTypes, this.createCalculationButton());
         this.output = new CalculatorOutput();
-    }
 
-    renderCalculator() {
-        return new DomElement("div")
-                .withChildren([this.input.domElement, this.output.domElement])
-                .withStyle({"margin-top": "1em"})
-                .build();
+        this.domElement = new DomElement("div")
+            .withChildren([this.input.domElement, this.output.domElement])
+            .withStyle({"margin-top": "1em"})
+            .build();
     }
 
     createCalculationButton() {

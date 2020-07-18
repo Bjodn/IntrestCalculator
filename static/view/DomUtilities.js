@@ -55,17 +55,16 @@ export class DomElement {
     }
 
     /*
+    *  Set style of element every time window is resized.
     *  Receives style setting as a function instead of object that return style object conditioned on window size.
-    * TODO
     */
     withResponsiveStyle(styleSettings) {
-        window.onresize = () => {
+        window.addEventListener("resize", () => {
             const styles = styleSettings();
             for (const [style, value] of Object.entries(styles)) {
                 this.element.style[style] = value;
             }
-        };
-        window.onresize = () => console.log("fail...");
+        });
         return this;
     }
 
@@ -102,4 +101,8 @@ export function adjustStylingOfElement(target, styleSettings) {
     for (const [style, value] of Object.entries(styleSettings)) {
         target.style[style] = value;
     }
+}
+
+export function widthOfDomElementIsLessThan(element, width) {
+    return element.matchMedia(`(max-width: ${width}px)`).matches
 }
