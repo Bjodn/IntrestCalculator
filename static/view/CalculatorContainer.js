@@ -4,6 +4,7 @@ export class CalculatorContainer {
 
     constructor() {
         this.domElement = new DomElement("div")
+            .withId("CalculatorContainer")
             .withResponsiveStyle(calculatorContainerStyle)
             .build();
     }

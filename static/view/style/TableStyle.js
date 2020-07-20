@@ -28,6 +28,14 @@ export const appendedCellStyle = {
     "border-left-style": "dashed"
 };
 
+export const sumCellStyle = {
+    "border-left-style": "dashed"
+};
+
+export const annualCellStyle = {
+    width: "1.2em"
+};
+
 export const headerCellStyle =  {
     "border-bottom-width": "0.1em"
 };

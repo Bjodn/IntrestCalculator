@@ -45,6 +45,7 @@ function createInputField(input) {
         .build();
 }
 
+//TODO
 function setDefaultValue(input) {
     if (input === "Rate") {
         return "8"

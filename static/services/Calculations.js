@@ -1,20 +1,10 @@
-class Calculation {
-    constructor(inputTypes, calculation) {
-        this.inputTypes = inputTypes;
-        this.calculationMethod = calculation;
-    }
-}
+import {InterestsEnum} from "../enums/InterestCalculatorEnums.js";
 
-export const interestCalculation = new Calculation(
-    ["Rate", "Sum", "Years", "Appending value"],
-    calculateInterest
-);
-
-function calculateInterest(input) {
-    const rate = Number(input["Rate"]);
-    const originalSum = Number(input["Sum"]);
-    const years = Number(input["Years"]);
-    const appendingValue = Number(input["Appending value"]);
+export function calculateInterest(input) {
+    const rate = Number(input[InterestsEnum.RATE]);
+    const originalSum = Number(input[InterestsEnum.SUM]);
+    const years = Number(input[InterestsEnum.YEARS]);
+    const appendingValue = Number(input[InterestsEnum.APPENDING]);
 
     let sum = originalSum;
     let appended = 0;
@@ -22,11 +12,12 @@ function calculateInterest(input) {
     const everyCalculatedInterest = [];
 
     for (let i = 0; i < years; i++) {
+        const annual = i + 1;
         sum = addAppendingValue(sum, appendingValue);
         sum = addInterest(sum, rate);
         appended += appendingValue;
         const profit = calculateProfit(sum, originalSum, appended);
-        everyCalculatedInterest.push(new CalculatedInterest(sum, appended, profit));
+        everyCalculatedInterest.push(new CalculatedInterest(annual, sum, appended, profit));
     }
 
     return everyCalculatedInterest;
@@ -45,10 +36,10 @@ function calculateProfit(sum, originalSum, appended) {
 }
 
 class CalculatedInterest {
-    constructor(sum, appended, profit) {
-        this["Sum"] = sum;
-        this["Appended"] = appended;
-        this["Profit"] = profit;
+    constructor(annual, sum, appended, profit) {
+        this[InterestsEnum.ANNUAL] = annual;
+        this[InterestsEnum.SUM] = sum;
+        this[InterestsEnum.APPENDED] = appended;
+        this[InterestsEnum.PROFIT] = profit;
     }
 }
-

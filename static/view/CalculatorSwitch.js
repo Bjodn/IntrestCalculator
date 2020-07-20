@@ -5,7 +5,6 @@ import {adjustStylingOfElement} from "./DomUtilities.js";
 export class CalculatorSwitch {
 
     constructor(calculators) {
-
         this.options = calculators.map(calculator => this.createCalculatorOption(calculator));
 
         this.domElement = new DomElement("div")
@@ -18,7 +17,7 @@ export class CalculatorSwitch {
     createCalculatorOption(calculator) {
         return new DomElement("Button")
             .withOnClick(
-                () => chooseCalculator(calculator.class, this.calculatorContainer),
+                () => chooseCalculator(calculator, this.calculatorContainer),
                 chosenOption => this.activateOption(chosenOption)
             )
             .withInnerHtml(calculator.name)
@@ -41,5 +40,5 @@ export class CalculatorSwitch {
 
 function chooseCalculator(calculator, calculatorContainer) {
     clearChildren(calculatorContainer.domElement);
-    calculatorContainer.domElement.appendChild(calculator.domElement)
+    calculatorContainer.domElement.appendChild(calculator.domElement);
 }

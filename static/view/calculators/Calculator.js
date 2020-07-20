@@ -1,13 +1,18 @@
-import {DomElement, elementById, clearChildren} from "./DomUtilities.js";
-import {CalculatorOutput} from "./CalculatorOutput.js";
-import {CalculatorInput} from "./CalculatorInput.js";
-import {formButtonStyle} from "./style/FormStyle.js";
+import {DomElement, elementById, clearChildren} from "../DomUtilities.js";
+import {CalculatorOutput} from "../CalculatorOutput.js";
+import {CalculatorInput} from "../CalculatorInput.js";
+import {formButtonStyle} from "../style/FormStyle.js";
 
 export class Calculator {
 
-    constructor(calculation) {
-        this.calculation = calculation;
-        this.input = new CalculatorInput(calculation.inputTypes, this.createCalculationButton());
+    name;
+    inputTypes;
+    calculation;
+    input;
+    output;
+
+    renderCalculator() {
+        this.input = new CalculatorInput(this.inputTypes, this.createCalculationButton());
         this.output = new CalculatorOutput();
 
         this.domElement = new DomElement("div")
@@ -28,12 +33,14 @@ export class Calculator {
     }
 
     initiateCalculationAndPrintResult() {
-        const input = gatherCalculatorInput(this.calculation.inputTypes);
-        const result = this.calculation.calculationMethod(input);
+        const input = gatherCalculatorInput(this.inputTypes);
+        const result = this.calculation(input);
 
         clearChildren(this.output.domElement);
-        this.output.renderOutput(result);
+        this.output.renderOutput(result, this.tableOutputStyleAdjustment);
     }
+
+    tableOutputStyleAdjustment() {}
 
 }
 
