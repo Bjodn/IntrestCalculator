@@ -6,12 +6,11 @@ import {mergeStyles} from "../DomUtilities.js";
 
 class InterestCalculator extends Calculator {
 
-    name = "Interest";
-    inputTypes = [InterestsEnum.RATE, InterestsEnum.SUM, InterestsEnum.YEARS, InterestsEnum.APPENDING];
-    calculation = calculateInterest;
-
     constructor() {
         super();
+        this.name = "Interest";
+        this.inputTypes = [InterestsEnum.RATE, InterestsEnum.SUM, InterestsEnum.YEARS, InterestsEnum.APPENDING];
+        this.calculation = calculateInterest;
         this.renderCalculator();
     }
 

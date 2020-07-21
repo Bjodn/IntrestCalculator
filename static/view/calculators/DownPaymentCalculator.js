@@ -7,12 +7,11 @@ import {mergeStyles} from "../DomUtilities.js";
 //TODO
 class DownPaymentCalculator extends Calculator {
 
-    name = "Down Payment";
-    inputTypes = [InterestsEnum.RATE, InterestsEnum.SUM, InterestsEnum.YEARS, InterestsEnum.APPENDING];
-    calculation = calculateInterest;
-
-    constructor() {
+        constructor() {
         super();
+        this.name = "Down Payment";
+        this.inputTypes = [InterestsEnum.RATE, InterestsEnum.SUM, InterestsEnum.YEARS, InterestsEnum.APPENDING];
+        this.calculation = calculateInterest;
         this.renderCalculator();
     }
 

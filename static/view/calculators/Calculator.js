@@ -5,12 +5,6 @@ import {formButtonStyle} from "../style/FormStyle.js";
 
 export class Calculator {
 
-    name;
-    inputTypes;
-    calculation;
-    input;
-    output;
-
     renderCalculator() {
         this.input = new CalculatorInput(this.inputTypes, this.createCalculationButton());
         this.output = new CalculatorOutput();
