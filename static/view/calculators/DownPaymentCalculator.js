@@ -1,8 +1,7 @@
 import {Calculator} from "./Calculator.js";
 import {calculateInterest} from "../../services/Calculations.js";
 import {InterestsEnum} from "../../enums/InterestCalculatorEnums.js";
-import {annualCellStyle, appendedCellStyle, cellStyle, profitCellStyle, sumCellStyle} from "../style/TableStyle.js";
-import {mergeStyles} from "../DomUtilities.js";
+import {annualCellStyle, appendedCellStyle, profitCellStyle, sumCellStyle} from "../style/TableStyle.js";
 
 //TODO
 class DownPaymentCalculator extends Calculator {
