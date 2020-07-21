@@ -15,20 +15,20 @@ class DownPaymentCalculator extends Calculator {
         this.renderCalculator();
     }
 
-    tableOutputStyleAdjustment(outputType) {
-        let style = {...cellStyle};
+    getCellStyleBaseOnType(outputType) {
+        let style;
         switch (outputType) {
             case InterestsEnum.PROFIT:
-                style = mergeStyles(style, profitCellStyle);
+                style = profitCellStyle;
                 break;
             case InterestsEnum.APPENDED:
-                style = mergeStyles(style, appendedCellStyle);
+                style = appendedCellStyle;
                 break;
             case InterestsEnum.SUM:
-                style = mergeStyles(style, sumCellStyle);
+                style = sumCellStyle;
                 break;
             case InterestsEnum.ANNUAL:
-                style = mergeStyles(style, annualCellStyle);
+                style = annualCellStyle;
                 break;
         }
         return style;

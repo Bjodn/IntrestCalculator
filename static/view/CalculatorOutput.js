@@ -7,14 +7,14 @@ export class CalculatorOutput {
         this.domElement = new DomElement("div").build()
     }
 
-    renderOutput(output, outputStyleAdjustments) {
+    renderOutput(output, getCellStyle) {
         const rows = [];
-        rows.push(createTableHeader(Object.keys(output[0]), outputStyleAdjustments));
-        rows.push(...createTableRows(output, outputStyleAdjustments));
+        rows.push(createTableHeader(Object.keys(output[0]), getCellStyle));
+        rows.push(...createTableRows(output, getCellStyle));
 
         const table = new DomElement("table")
             .withChildren(rows)
-            .withStyle({"margin-top": "2.5em"})
+            .withStyle({width: "100%", "margin-top": "2.5em"})
             .build();
         table.cellSpacing = 0;
         this.domElement.appendChild(table);
@@ -22,36 +22,39 @@ export class CalculatorOutput {
 
 }
 
-function createTableHeader(headerCells, outputStyleAdjustments) {
-    return new DomElement("tr").withChildren(createHeaderCells(headerCells, outputStyleAdjustments)).build()
+function createTableHeader(headerCells, getCellStyle) {
+    return new DomElement("tr").withChildren(createHeaderCells(headerCells, getCellStyle)).build()
 }
 
-function createTableRows(output, outputStyleAdjustments) {
+function createTableRows(output, getCellStyle) {
     return output.map(annualOutput => new DomElement("tr")
-                                        .withChildren(createTableCells(annualOutput, outputStyleAdjustments))
+                                        .withChildren(createTableCells(annualOutput, getCellStyle))
                                         .build());
 }
 
-function createHeaderCells(cells, outputStyleAdjustments) {
+function createHeaderCells(cells, getCellStyle) {
     return cells.map(cell => new DomElement("td")
                                 .withInnerHtml(cell)
-                                .withStyle(adjustHeaderStyleToCellType(cell, outputStyleAdjustments))
+                                .withResponsiveStyle(mergeCellStyleWithHeaderStyleResponsively(cell, getCellStyle))
                                 .build());
 }
 
-function createTableCells(annualOutput, outputStyleAdjustments) {
+function createTableCells(annualOutput, getCellStyle) {
     const cells = [];
     for (const [outputType, output] of Object.entries(annualOutput)) {
-        let style = outputStyleAdjustments(outputType);
         let nt = new Intl.NumberFormat();
         const formattedOutput = nt.format(output);
-        cells.push(new DomElement("td").withInnerHtml(formattedOutput).withStyle(style).build());
+        cells.push(new DomElement("td")
+                    .withInnerHtml(formattedOutput)
+                    .withResponsiveStyle(getCellStyle(outputType))
+                    .build());
     }
     return cells;
 }
 
-function adjustHeaderStyleToCellType(cellType, outputStyleAdjustments) {
-    let style = outputStyleAdjustments(cellType);
-    style = mergeStyles(style, headerCellStyle);
-    return style;
+function mergeCellStyleWithHeaderStyleResponsively(cellType, getCellStyle) {
+    return () => {
+        const responsiveStyle = getCellStyle(cellType);
+        return mergeStyles(responsiveStyle(), headerCellStyle);
+    };
 }

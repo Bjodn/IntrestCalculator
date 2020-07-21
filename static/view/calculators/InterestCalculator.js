@@ -1,8 +1,7 @@
 import {Calculator} from "./Calculator.js";
 import {calculateInterest} from "../../services/Calculations.js";
 import {InterestsEnum} from "../../enums/InterestCalculatorEnums.js";
-import {appendedCellStyle, sumCellStyle, cellStyle, profitCellStyle, annualCellStyle} from "../style/TableStyle.js";
-import {mergeStyles} from "../DomUtilities.js";
+import {appendedCellStyle, sumCellStyle, profitCellStyle, annualCellStyle} from "../style/TableStyle.js";
 
 class InterestCalculator extends Calculator {
 
@@ -14,20 +13,20 @@ class InterestCalculator extends Calculator {
         this.renderCalculator();
     }
 
-    tableOutputStyleAdjustment(outputType) {
-        let style = {...cellStyle};
+    getCellStyleBaseOnType(outputType) {
+        let style;
         switch (outputType) {
             case InterestsEnum.PROFIT:
-                style = mergeStyles(style, profitCellStyle);
+                style = profitCellStyle;
                 break;
             case InterestsEnum.APPENDED:
-                style = mergeStyles(style, appendedCellStyle);
+                style = appendedCellStyle;
                 break;
             case InterestsEnum.SUM:
-                style = mergeStyles(style, sumCellStyle);
+                style = sumCellStyle;
                 break;
             case InterestsEnum.ANNUAL:
-                style = mergeStyles(style, annualCellStyle);
+                style = annualCellStyle;
                 break;
         }
         return style;

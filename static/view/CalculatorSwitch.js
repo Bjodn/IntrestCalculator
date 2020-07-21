@@ -1,5 +1,5 @@
 import {DomElement, clearChildren} from "./DomUtilities.js";
-import {optionStyle, chosenOptionStyle, unchosenOptionStyle} from "./style/SwitchStyle.js";
+import {containerStyle, optionStyle, chosenOptionStyle, unchosenOptionStyle} from "./style/SwitchStyle.js";
 import {adjustStylingOfElement} from "./DomUtilities.js";
 
 export class CalculatorSwitch {
@@ -10,7 +10,7 @@ export class CalculatorSwitch {
         this.domElement = new DomElement("div")
             .withId("calculatorSwitch")
             .withChildren(this.options)
-            .withStyle({"margin": "0 auto", "width": "50%", "padding-bottom": "2.5em"})
+            .withResponsiveStyle(containerStyle)
             .build();
     }
 
@@ -21,11 +21,12 @@ export class CalculatorSwitch {
                 chosenOption => this.activateOption(chosenOption)
             )
             .withInnerHtml(calculator.name)
-            .withStyle(optionStyle)
+            .withResponsiveStyle(optionStyle)
             .build()
     }
 
     activateOption(chosenOption) {
+        //TODO change to onclick event?
         this.options.forEach(option => adjustStylingOfElement(option, unchosenOptionStyle));
         adjustStylingOfElement(chosenOption, chosenOptionStyle);
     }

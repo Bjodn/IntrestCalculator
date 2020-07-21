@@ -22,7 +22,7 @@ export class Calculator {
             .withName("button")
             .withInnerHtml("Calculate")
             .withOnClick(() => this.initiateCalculationAndPrintResult())
-            .withStyle(formButtonStyle)
+            .withResponsiveStyle(formButtonStyle)
             .build()
     }
 
@@ -31,10 +31,10 @@ export class Calculator {
         const result = this.calculation(input);
 
         clearChildren(this.output.domElement);
-        this.output.renderOutput(result, this.tableOutputStyleAdjustment);
+        this.output.renderOutput(result, this.getCellStyleBaseOnType);
     }
 
-    tableOutputStyleAdjustment() {}
+    getCellStyleBaseOnType() {}
 
 }
 

@@ -16,7 +16,7 @@ function calculatorContainerStyle() {
         margin: "0 auto",
         width: "50%"
     };
-    if (widthOfDomElementIsLessThan(window, 700)) {
+    if (widthOfDomElementIsLessThan(window, 800)) {
         style.width = "100%";
     }
     return style;

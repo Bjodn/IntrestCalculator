@@ -1,5 +1,5 @@
 import {DomElement} from "./DomUtilities.js";
-import {formStyle, inputStyle} from "./style/FormStyle.js";
+import {formStyle, inputStyle, inputWrapperStyle} from "./style/FormStyle.js";
 
 export class CalculatorInput {
 
@@ -30,18 +30,20 @@ function buttonWrapper(button) {
 
 function createInputField(input) {
     const inputText = new DomElement("div")
+        .withClassName("InputText")
         .withInnerHtml(input + ": ")
         .build();
 
     const inputElement = new DomElement("input")
         .withId(input)
-        .withStyle(inputStyle)
+        .withResponsiveStyle(inputStyle)
         .withValue(setDefaultValue(input))
         .build();
 
     return new DomElement("div")
+        .withClassName("InputWrapper")
         .withChildren([inputText, inputElement])
-//        .withStyle({width: "100%"}) TODO ??
+        .withResponsiveStyle(inputWrapperStyle)
         .build();
 }
 

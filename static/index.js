@@ -3,9 +3,12 @@ import {colorPalette} from "./view/style/ColorPalette.js";
 import {CalculatorContainer} from "./view/CalculatorContainer.js";
 import {interestCalculator} from "./view/calculators/InterestCalculator.js";
 import {downPaymentCalculator} from "./view/calculators/DownPaymentCalculator.js";
+import {adjustStylingOfElement} from "./view/DomUtilities.js";
 
 const app = document.getElementsByTagName("Body")[0];
-app.style.backgroundColor = colorPalette.backgroundColor;
+adjustStylingOfElement(app, {
+    "background-color": colorPalette.backgroundColor
+});
 
 const calculatorContainer = new CalculatorContainer();
 const calculatorSwitch = new CalculatorSwitch([interestCalculator, downPaymentCalculator]);

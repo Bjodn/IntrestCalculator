@@ -10,6 +10,11 @@ export class DomElement {
         return this;
     }
 
+    withClassName(className) {
+        this.element.className = className;
+        return this;
+    }
+
     withInnerHtml(html) {
         this.element.innerHTML = html;
         return this;
