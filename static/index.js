@@ -7,7 +7,7 @@ import {adjustStylingOfElement} from "./view/DomUtilities.js";
 
 if ('serviceWorker' in navigator){
     navigator.serviceWorker.register('/SW.js')
-        .then(reg => console.log('service worker registered'))
+        .then(reg => console.log('service worker registered', reg))
         .catch(err => console.log('service worker not registered', err));
 }
 

@@ -1,4 +1,3 @@
-
 const cacheName = 'site-static-v1';
 const staticAssets = [
     '/',
@@ -19,23 +18,32 @@ const staticAssets = [
     '/static/view/style/FormStyle.js',
     '/static/view/style/SwitchStyle.js',
     '/static/view/style/TableStyle.js',
+    '/static/images/icon-192x192.png',
+    '/static/images/icon-512x512.png',
 ];
 
 self.addEventListener('install', async event => {
-    const cache = await caches.open(cacheName);
-    try {
-        await cache.addAll(staticAssets);
-    } catch(e) {
-        console.log(e)
-    }
-    return self.skipWaiting(); // TODO?
+    console.log("Install event");
+    event.waitUntil(addToCache());
 });
 
+async function addToCache() {
+    const cache = await caches.open(cacheName);
+    try {
+        console.log("Trying to add static assets to cache: ", staticAssets);
+        await cache.addAll(staticAssets);
+    } catch(e) {
+        console.log("Cache add failed..", e)
+    }
+}
+
 self.addEventListener('activate', event => {
-    self.clients.claim();
+    console.log("Activate event");
+    self.clients.claim(); // TODO ?
 });
 
 self.addEventListener('fetch', event => {
+    //console.log("Fetch event");
     const req = event.request;
     const url = new URL(req.url);
     if (url.origin === location.origin) {
@@ -45,12 +53,14 @@ self.addEventListener('fetch', event => {
     }
 });
 
+//TODO
 async function cacheFirst(req) {
     const cache = await caches.open(cacheName);
     const cached = await cache.match(req);
     return cached || fetch(req);
 }
 
+//TODO
 async function networkAndCache(req) {
     const cache = await caches.open(cacheName);
     try {
@@ -62,24 +72,3 @@ async function networkAndCache(req) {
     }
 }
 
-/*
-
-// activate event
-self.addEventListener('activate', evt => {
-    evt.waitUntil(
-        caches.keys().then(keys => {
-            return Promise.all(keys
-                .filter(key => key !== staticCacheName)
-                .map(key => caches.delete(key))
-            );
-        })
-    );
-});
-// fetch event
-self.addEventListener('fetch', evt => {
-    evt.respondWith(
-        caches.match(evt.request).then(cacheRes => {
-            return cacheRes || fetch(evt.request);
-        })
-    );
-});*/
