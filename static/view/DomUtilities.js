@@ -30,15 +30,24 @@ export class DomElement {
         return this;
     }
 
-    withOnClick(method, elementReaction) {
-        if (elementReaction != null) {
-            this.element.onclick = () => {
-                method();
-                elementReaction(this.element);
-            }
-        } else {
-            this.element.onclick = method;
-        }
+    withOnClick(method) {
+        this.element.onclick = method;
+        return this;
+    }
+
+    /*
+    * Executes event and and a reaction of clicked element.
+    */
+    withOnClickWithElementReaction(method, elementReaction) {
+        this.element.onclick = () => {
+            method();
+            elementReaction(this.element);
+        };
+        return this;
+    }
+
+    withOnClickMultipleEvents(methods) {
+        this.element.onclick = () => methods.forEach(method => method());
         return this;
     }
 
@@ -92,6 +101,10 @@ export function clearChildren(element) {
     }
 }
 
+export function appendChildren(element, children) {
+    children.forEach(child => element.appendChild(child));
+}
+
 export function elementById(id) {
     return document.getElementById(id);
 }
@@ -105,6 +118,9 @@ export function mergeStyles(target, additionalStyle) {
 }
 
 export function adjustStylingOfElement(target, styleSettings) {
+    if (typeof  styleSettings === "function") {
+        styleSettings = styleSettings();
+    }
     for (const [style, value] of Object.entries(styleSettings)) {
         target.style[style] = value;
     }

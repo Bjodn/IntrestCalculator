@@ -17,8 +17,8 @@ adjustStylingOfElement(app, {
 });
 
 const calculatorContainer = new CalculatorContainer();
-const calculatorSwitch = new CalculatorSwitch([interestCalculator, downPaymentCalculator]);
-calculatorSwitch.setCalculatorContainer(calculatorContainer);
+const calculatorSwitch = new CalculatorSwitch([interestCalculator, downPaymentCalculator],
+                                                calculatorContainer);
 
 app.appendChild(calculatorSwitch.domElement);
 app.appendChild(calculatorContainer.domElement);

@@ -3,7 +3,7 @@ import {InterestsEnum} from "../enums/InterestCalculatorEnums.js";
 export function calculateInterest(input) {
     const rate = Number(input[InterestsEnum.RATE]);
     const originalSum = Number(input[InterestsEnum.SUM]);
-    const years = Number(input[InterestsEnum.YEARS]);
+    const annual = Number(input[InterestsEnum.ANNUAL]);
     const appendingValue = Number(input[InterestsEnum.APPENDING]);
 
     let sum = originalSum;
@@ -11,7 +11,7 @@ export function calculateInterest(input) {
 
     const everyCalculatedInterest = [];
 
-    for (let i = 0; i < years; i++) {
+    for (let i = 0; i < annual; i++) {
         const annual = i + 1;
         sum = addAppendingValue(sum, appendingValue);
         sum = addInterest(sum, rate);

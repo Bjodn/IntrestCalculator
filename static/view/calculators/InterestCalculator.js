@@ -8,7 +8,7 @@ class InterestCalculator extends Calculator {
     constructor() {
         super();
         this.name = "Interest";
-        this.inputTypes = [InterestsEnum.RATE, InterestsEnum.SUM, InterestsEnum.YEARS, InterestsEnum.APPENDING];
+        this.inputTypes = [InterestsEnum.RATE, InterestsEnum.SUM, InterestsEnum.ANNUAL, InterestsEnum.APPENDING];
         this.calculation = calculateInterest;
         this.renderCalculator();
     }
