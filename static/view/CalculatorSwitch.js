@@ -10,7 +10,7 @@ export class CalculatorSwitch {
         this.options = calculators.map(calculator => this.createCalculatorOption(calculator));
 
         this.defaultOption = this.options[0];
-        this.choooseAndActivateDefaultOption();
+        this.chooseAndActivateDefaultOption();
 
         this.dropdown = new DomElement("Button")
             .withInnerHtml(calculators[0].name)
@@ -28,7 +28,7 @@ export class CalculatorSwitch {
             .build();
     }
 
-    choooseAndActivateDefaultOption() {
+    chooseAndActivateDefaultOption() {
         this.defaultOption.click(); // Why not??
     }
 
