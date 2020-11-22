@@ -5,7 +5,7 @@ import {adjustStylingOfElement} from "./DomUtilities.js";
 export class CalculatorSwitch {
 
     constructor(calculators, calculatorContainer) {
-        this.setCalculatorContainer(calculatorContainer);
+        //this.setCalculatorContainer(calculatorContainer);
 
         this.options = calculators.map(calculator => this.createCalculatorOption(calculator));
 
@@ -68,6 +68,6 @@ export class CalculatorSwitch {
 
 function chooseCalculator(calculator, calculatorContainer) {
     console.log(`Choosing calculator ${calculator.name}`);
-    clearChildren(calculatorContainer.domElement);
-    calculatorContainer.domElement.appendChild(calculator.domElement);
+    //clearChildren(calculatorContainer.domElement);
+    //calculatorContainer.domElement.appendChild(calculator.domElement);
 }

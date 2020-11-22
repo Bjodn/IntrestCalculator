@@ -96,9 +96,11 @@ export class DomElement {
 }
 
 export function clearChildren(element) {
+    /*
     while (element.lastElementChild) {
         element.removeChild(element.lastElementChild);
     }
+    */
 }
 
 export function appendChildren(element, children) {

@@ -1,4 +1,13 @@
-import {InterestsEnum} from "../enums/InterestCalculatorEnums.js";
+
+const InterestsEnum = Object.freeze({
+    RATE: "Rate",
+    SUM: "Sum",
+    YEARS: "Years",
+    APPENDING: "Appending value",
+    ANNUAL: "Annual",
+    APPENDED: "Appended",
+    PROFIT: "Profit"
+});
 
 export function calculateInterest(input) {
     const rate = Number(input[InterestsEnum.RATE]);
