@@ -1,0 +1,14 @@
+
+.CalculatorOutput {
+  margin: 2em;
+  max-width: 25em;
+
+  tr {
+    padding: 0.25em;
+
+    td, th {
+      padding: 0.25em;
+      border-bottom: 0.1em solid;
+    }
+  }
+}

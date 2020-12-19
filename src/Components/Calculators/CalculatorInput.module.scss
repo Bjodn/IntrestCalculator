@@ -1,0 +1,46 @@
+
+.CalculatorInput {
+
+
+  margin: 2em;
+  max-width: 25em;
+
+  display: grid;
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    grid-row: 1;
+
+    li {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 1.5em auto;
+      padding: 0.25em;
+
+      .formName {
+        grid-column: 1 / 2;
+        grid-row: 1;
+        float: left;
+        display: inline-block;
+        p {
+          margin: 0;
+          padding: 0;
+          float: left;
+        }
+      }
+
+      .formInput {
+        grid-column: 2 / 2;
+        grid-row: 1;
+      }
+    }
+
+  }
+
+  button {
+    grid-row: 2;
+  }
+
+
+}

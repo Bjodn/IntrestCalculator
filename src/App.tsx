@@ -10,14 +10,13 @@ import {CalculatorContainer} from "./Components/CalculatorContainer/CalculatorCo
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-          <CalculatorSwitch />
-      </header>
+        <header className="App-header">
+            <CalculatorSwitch />
+        </header>
         <div>
-            <h1>Container</h1>
             <CalculatorContainer />
-            </div>
         </div>
+    </div>
   );
 }
 

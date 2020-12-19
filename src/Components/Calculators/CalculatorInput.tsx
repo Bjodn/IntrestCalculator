@@ -1,6 +1,7 @@
 import React, {RefObject} from 'react';
 import ReactDOM from "react-dom";
 import {OutputTable} from "./CalculatorOutput";
+import styles from  "./CalculatorInput.module.scss";
 
 export interface CalculatorInput {
     name: string
@@ -11,20 +12,20 @@ export function CalculatorInputForm(props: any) {
     const inputs: Array<CalculatorInput> = props.inputs;
     const calculation: any = props.calculation;
     return (
-        <div>
+        <div className={styles.CalculatorInput} >
+            <ul>
             {
-                inputs.map(input => (
-                    <div key={input.name} >
-                        <p>{input.name}</p> <input ref={input.ref} />
-                    </div>)
-                )
+                inputs.map(input => (<li>
+                    <div className={styles.formName}>
+                        <p>{input.name}</p>
+                    </div>
+                    <input className={styles.formInput} ref={input.ref} />
+                </li> ))
             }
-
-            <br/>
-
-            <button
-                onClick={() => calculate(inputs, calculation, props.outputRef)}
-            >Calculate</button>
+            </ul>
+            <button onClick={() => calculate(inputs, calculation, props.outputRef)}>
+                Calculate
+            </button>
         </div>
     )
 }
